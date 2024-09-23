@@ -1,10 +1,16 @@
 {
+  "name": "formulario-smd-back",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+  },
   "dependencies": {
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
     "pg": "^8.13.0"
   },
-  "scripts": {
-    "start": "node app.js"
+  "engines": {
+    "node": ">=14.x"
   }
 }
