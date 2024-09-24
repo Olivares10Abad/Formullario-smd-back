@@ -20,17 +20,7 @@ const pool = new Pool({
     }
 });
 
-// Middleware para parsear JSON
 app.use(bodyParser.json());
-
-// Ruta principal
-app.get('/', (req, res) => {
-    res.send('API de Hospitales, Paquetes y Formularios');
-});
-
-/**
- * Rutas para Hospitales
- */
 
 // Obtener todos los hospitales
 app.get('/hospitales', async (req, res) => {
@@ -53,10 +43,6 @@ app.get('/hospitales/:id', async (req, res) => {
     }
 });
 
-/**
- * Rutas para Paquetes
- */
-
 // Obtener todos los paquetes de un hospital
 app.get('/hospitales/:id/paquetes', async (req, res) => {
     const { id } = req.params;
@@ -68,17 +54,13 @@ app.get('/hospitales/:id/paquetes', async (req, res) => {
     }
 });
 
-/**
- * Rutas para Formularios
- */
-
 // Crear un formulario (nuevo registro)
 app.post('/formularios', async (req, res) => {
-    const { nombres, apellidos, email, numero, id_hospital } = req.body;
+    const { nombres, apellidos, email, numero, id_hospital, contactado, metodo } = req.body;
     try {
         const result = await pool.query(
-            'INSERT INTO formularios (nombres, apellidos, email, numero, id_hospital) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-            [nombres, apellidos, email, numero, id_hospital]
+            'INSERT INTO formularios (nombres, apellidos, email, numero, id_hospital, contactado, metodo) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+            [nombres, apellidos, email, numero, id_hospital, contactado, metodo]
         );
         res.status(201).json(result.rows[0]);
     } catch (err) {
@@ -96,9 +78,6 @@ app.get('/formularios', async (req, res) => {
     }
 });
 
-/**
- * Levantar el servidor
- */
 app.listen(port, () => {
     console.log(`API corriendo en http://localhost:${port}`);
 });
