@@ -59,7 +59,7 @@ app.post('/formularios', async (req, res) => {
     const { nombres, apellidos, email, numero, id_hospital, contactado, metodo } = req.body;
     try {
         const result = await pool.query(
-            'INSERT INTO formularios (nombres, apellidos, email, numero, id_hospital, contactado, metodo) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+            'INSERT INTO formularios (nombres, apellidos, email, numero, id_hospital, contactado, metodo) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
             [nombres, apellidos, email, numero, id_hospital, contactado, metodo]
         );
         res.status(201).json(result.rows[0]);
