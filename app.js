@@ -3,9 +3,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { Pool } = require('pg');
 const cors = require('cors');
-app.use(cors());
 
 const app = express();
+app.use(cors());
 const port = 3000;
 
 // Configuración de PostgreSQL
